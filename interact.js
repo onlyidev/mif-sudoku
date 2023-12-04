@@ -1,12 +1,12 @@
 import { saveLocalBoard, removeLocalBoard } from "./store";
 import { getSolution } from "./comms";
 
-const invalidClass = "text-red-500";
-const validClass = "bg-background-300";
+const invalidClass = ["text-red-500"];
+const validClass = ["bg-white/20"];
 const bgDanger = "bg-red-700";
 const bgSuccess = "bg-teal-600";
-const bgNormal = ["bg-white/10", "backdrop-blur-xl"];
-const bgFixed = "bg-background-200";
+const bgNormal = ["bg-secondary-500", "opacity-30"];
+const bgFixed = ["bg-background-200", "opacity-90"];
 
 
 export function boardCellTextChangeHandler(event) {
@@ -15,16 +15,17 @@ export function boardCellTextChangeHandler(event) {
     const target = event.target;
     target.textContent = event.data.toUpperCase();
     if (isValid(target)) {
-        target.classList.add(validClass);
-        target.classList.remove(invalidClass);
+        applyClass(target, validClass);
+        removeClass(target, invalidClass);
         removeClass(target, bgNormal);
     } else {
-        target.classList.add(invalidClass);
-        target.classList.remove(validClass);
+        applyClass(target, invalidClass);
+        removeClass(target, validClass);
         applyClass(target, bgNormal);
     }
     saveLocalBoard(getCurrentBoardState());
-    window.document.querySelector("aside #answer").disabled = !isAnswerReady();
+    console.log(isAnswerReady());
+    window.document.querySelector("#answerButton").disabled = !isAnswerReady();
 }
 
 export function isValid(el) {
@@ -49,8 +50,8 @@ export function resetBoard() {
         .filter((el) => el.isContentEditable)
         .forEach((el) => {
             el.textContent = "";
-            el.classList.remove(invalidClass);
-            el.classList.remove(validClass);
+            removeClass(el, invalidClass);
+            removeClass(el, validClass);
             applyClass(el, bgNormal);
         });
     removeLocalBoard();
@@ -85,7 +86,7 @@ export function loadBoardFromString(off, usr, board = window.board) {
         if (official[i] == "x") {
             div.contentEditable = true;
             if (usr != "" && user[i] != "x")
-                div.classList.add(validClass);
+                applyClass(div, validClass);
             else
                 applyClass(div, bgNormal);
         } else {
@@ -111,10 +112,10 @@ export async function revealAnswer() {
     mismatches.forEach((i) => applyDanger(window.board.querySelectorAll("div")[i]));
     const officialArray = window.boardData.board.split("");
     [...Array.from(window.board.querySelectorAll("div")).keys()].filter(i => !mismatches.includes(i) && isNaN(officialArray[i]))
-        .forEach(el => applyClass(window.board.querySelectorAll("div")[el], bgSuccess));
+        .forEach(el => applySuccess(window.board.querySelectorAll("div")[el]));
 
-    window.document.querySelector("aside #answer").disabled = true;
-    window.document.querySelector("aside #reset").disabled = false;
+    window.document.querySelector("#answerButton").disabled = true;
+    window.document.querySelector("#resetButton").disabled = true;
 }
 
 export function disableInput() {
@@ -132,8 +133,13 @@ export function findMismatches(arr1, arr2, lambda) {
 }
 
 export function applyDanger(el) {
-    removeClass(el, [validClass, invalidClass, ...bgNormal, bgFixed]);
+    removeClass(el, [...validClass, ...invalidClass, ...bgNormal, ...bgFixed]);
     applyClass(el, ["text-white", bgDanger]);
+}
+
+export function applySuccess(el) {
+    removeClass(el, [...validClass, ...invalidClass, ...bgNormal, ...bgFixed, bgDanger]);
+    applyClass(el, ["text-white", bgSuccess]);
 }
 
 export function applyClass(el, cls) {

@@ -12,7 +12,7 @@ window.onload = async () => {
   interact.prepareBoard(window.boardData.width);
   interact.loadBoardFromString(window.boardData.board, store.getLocalBoard() ?? "");
 
-  window.document.querySelector("aside #answer").addEventListener("click", interact.revealAnswer);
-  window.document.querySelector("aside #reset").addEventListener("click", interact.resetBoard);
+  window.document.querySelector("#answerButton").addEventListener("click", interact.revealAnswer);
+  window.document.querySelector("#resetButton").addEventListener("click", interact.resetBoard);
 
 };

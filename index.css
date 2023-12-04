@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
     :root {
         --text-50: #f0f0f5;
@@ -133,10 +134,10 @@
     h4,
     h5,
     h6 {
-        @apply font-heading;
+        font-family: 'Titillium Web';
     }
 
     body {
-        @apply font-body;
+        font-family: 'Titillium Web';
     }
 }

@@ -14,8 +14,8 @@ module.exports = {
         '5xl': '4.210rem',
       },
       fontFamily: {
-        heading: 'Belanosima',
-        body: 'Belanosima',
+        heading: 'Titillium Web',
+        body: 'Titillium Web',
       },
       fontWeight: {
         normal: '400',

@@ -4,16 +4,28 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="module" src="main.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet" />
         <title>MIF Sudoku</title>
     </head>
 
-    <body class="dark flex h-screen flex-col bg-gradient-to-r from-primary-500 to-accent-500">
+    <body class="dark flex h-screen w-full flex-col bg-gradient-to-r from-background-100 via-background-300 to-background-100">
         <header class="flex justify-center">
-            <h1 class="mt-5 bg-gradient-to-t from-background-200 to-background-400 bg-clip-text text-5xl text-transparent">MIF Sudoku</h1>
+            <h1 class="mt-5 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-5xl text-transparent"><b>MIF</b></h1>
+            <h1 class="mt-5 text-5xl text-text-800">&nbsp;Sudoku</h1>
         </header>
-        <main class="flex min-h-0 grow items-center justify-center p-10 text-2xl font-semibold text-text-800">
-            <div class="h-full grow">
+        <div class="absolute h-full w-full overflow-hidden">
+            <div class="absolute left-0 top-0 z-10 h-[200%] w-1/2 rounded-full bg-primary-500 mix-blend-overlay blur-3xl"></div>
+            <div class="absolute right-0 top-0 z-10 h-[200%] w-1/2 rounded-full bg-accent-500 mix-blend-overlay blur-3xl"></div>
+        </div>
+        <main class="flex min-h-0 grow items-center justify-center p-10 text-2xl font-semibold text-text-900">
+            <div class="z-20 h-full grow">
                 <div class="flex h-full w-full justify-center">
+                    <button
+                        id="resetButton"
+                        class="text-md mx-4 h-fit w-12 self-center rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:opacity-50 [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
+                    >
+                        ↺
+                    </button>
                     <section id="board" class="grid aspect-square max-h-full max-w-full grid-cols-9 grid-rows-[9] gap-2">
                         <template id="card">
                             <div
@@ -25,26 +37,20 @@
                         </template>
                     </section>
                     <section id="answer" style="display: none" class="ml-5 grid aspect-square max-h-full max-w-full grid-cols-9 grid-rows-[9] gap-2"></section>
-                    <aside class="right-0 mx-5 flex flex-col justify-center space-y-10 text-text-900">
+                    <div class="relative mx-4 h-fit self-center">
                         <button
-                            id="answer"
+                            id="answerButton"
                             disabled
-                            class="group rounded-lg bg-white/30 px-3 py-2 text-base backdrop-blur transition-transform duration-150 ease-out [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:active:scale-95"
+                            class="text-md group h-fit w-12 rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:opacity-50 [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
                         >
                             <div class="absolute right-0 top-0 aspect-square w-2 animate-ping rounded-full bg-primary-600 group-disabled:hidden"></div>
-                            Check Answer
+                            ✓
                         </button>
-                        <button
-                            id="reset"
-                            class="rounded-lg bg-white/30 px-3 py-2 text-base backdrop-blur transition-transform duration-150 ease-out [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:active:scale-95"
-                        >
-                            Reset
-                        </button>
-                    </aside>
+                    </div>
                 </div>
             </div>
         </main>
-        <footer class="flex justify-center">
+        <footer class="flex h-20 items-center justify-center text-white">
             <p>&copy; 2023 | Liudas Kasperavičius</p>
         </footer>
     </body>
