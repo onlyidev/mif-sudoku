@@ -19,16 +19,16 @@
             <div class="absolute left-0 top-0 z-10 h-[200%] w-1/2 rounded-full bg-primary-500 mix-blend-overlay blur-3xl"></div>
             <div class="absolute right-0 top-0 z-10 h-[200%] w-1/2 rounded-full bg-accent-500 mix-blend-overlay blur-3xl"></div>
         </div>
-        <main class="flex min-h-0 grow items-center justify-center p-10 text-2xl font-semibold text-text-900">
+        <main class="text-md flex min-h-0 grow items-center justify-center p-10 font-semibold text-text-900 md:text-2xl">
             <div class="z-20 h-full grow">
-                <div class="flex h-full w-full justify-center">
+                <div class="flex h-full w-full flex-col justify-center lg:flex-row">
                     <button
                         id="resetButton"
-                        class="text-md mx-4 h-fit w-12 self-center rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:opacity-50 [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
+                        class="text-md mx-4 my-4 h-fit w-12 self-center rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:hidden disabled:opacity-50 lg:disabled:inline [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
                     >
                         ↺
                     </button>
-                    <section id="board" class="grid aspect-square max-h-full max-w-full grid-cols-9 grid-rows-[9] gap-2">
+                    <section id="board" class="-order-1 grid aspect-square max-h-full max-w-full grid-cols-9 grid-rows-[9] gap-2 lg:order-none">
                         <template id="card">
                             <div
                                 class="flex aspect-square cursor-default items-center justify-center rounded-md font-sans caret-transparent transition-transform duration-150 ease-out hover:scale-105 focus:scale-105"
@@ -43,7 +43,7 @@
                         <button
                             id="answerButton"
                             disabled
-                            class="text-md group h-fit w-12 rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:opacity-50 [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
+                            class="text-md group h-fit w-12 rounded-lg bg-white/10 px-3 py-2 uppercase transition-transform duration-150 ease-out disabled:hidden disabled:opacity-50 lg:disabled:inline [&:not([disabled])]:hover:scale-105 [&:not([disabled])]:hover:bg-white/20 [&:not([disabled])]:active:scale-95"
                         >
                             <div class="absolute right-0 top-0 aspect-square w-2 animate-ping rounded-full bg-primary-600 group-disabled:hidden"></div>
                             ✓
