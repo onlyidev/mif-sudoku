@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script type="module" src="main.js"></script>
+        <script type="module" src="src/main.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Titillium Web" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <title>MIF Sudoku</title>
     </head>
 
@@ -12,6 +13,7 @@
         <header class="flex justify-center">
             <h1 class="mt-5 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-5xl text-transparent"><b>MIF</b></h1>
             <h1 class="mt-5 text-5xl text-text-800">&nbsp;Sudoku</h1>
+            <section id="toast" class="absolute right-0 z-20 m-5 hidden max-w-md cursor-pointer rounded-md bg-background-200 px-3 py-2 text-text-900"></section>
         </header>
         <div class="absolute h-full w-full overflow-hidden">
             <div class="absolute left-0 top-0 z-10 h-[200%] w-1/2 rounded-full bg-primary-500 mix-blend-overlay blur-3xl"></div>
@@ -52,6 +54,7 @@
         </main>
         <footer class="flex h-20 items-center justify-center text-white">
             <p>&copy; 2023 | Liudas Kasperavičius</p>
+            <span id="info" class="absolute right-0 z-20 mr-5 transform cursor-pointer p-3 text-text-900 transition-all duration-150 hover:scale-105">ⓘ</span>
         </footer>
     </body>
 </html>

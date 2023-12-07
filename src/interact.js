@@ -1,5 +1,6 @@
 import { saveLocalBoard, removeLocalBoard } from "./store";
 import { getSolution } from "./comms";
+import { showToast } from "./toast";
 
 const invalidClass = ["text-red-500"];
 const validClass = ["bg-white/20"];
@@ -24,7 +25,6 @@ export function boardCellTextChangeHandler(event) {
         applyClass(target, bgNormal);
     }
     saveLocalBoard(getCurrentBoardState());
-    console.log(isAnswerReady());
     window.document.querySelector("#answerButton").disabled = !isAnswerReady();
 }
 
@@ -55,6 +55,7 @@ export function resetBoard() {
             applyClass(el, bgNormal);
         });
     removeLocalBoard();
+    showToast("The board has been reset!");
 }
 
 export function getCurrentBoardState() {
@@ -110,6 +111,9 @@ export async function revealAnswer() {
         (el) => el.textContent,
     );
     mismatches.forEach((i) => applyDanger(window.board.querySelectorAll("div")[i]));
+    if (mismatches.length == 0) showToast("Congratulations, You Win!", Infinity);
+    else showToast("You have some mistakes, refresh and try again! No worries, your current board state won't disappear ;)", Infinity);
+
     const officialArray = window.boardData.board.split("");
     [...Array.from(window.board.querySelectorAll("div")).keys()].filter(i => !mismatches.includes(i) && isNaN(officialArray[i]))
         .forEach(el => applySuccess(window.board.querySelectorAll("div")[el]));
